@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Статистика</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #030335;
+            color: white;
+        }
+        .analytics-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px;
+            margin-bottom: 60px; /* добавлен отступ снизу */
+        }
+        .analytics-box {
+            width: 200px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #6e41c8;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .finance-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin: 20px;
+            margin-bottom: 60px; /* добавлен отступ снизу */
+        }
+        .finance-box {
+            width: 600px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #8c52ff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .finance-container1 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin: 20px;
+        }
+        .finance1-box {
+            width: 300px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #8c52ff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .chart-container {
+            width: 60%;
+            margin: 20px auto;
+            background-color: rgb(74, 22, 121);
+            padding: 20px;
+            border-radius: 10px;
+            color: #fff;
+        }
+        .controls {
+            margin: 10px;
+        }
+        .button {
+    padding: 15px;
+    margin: 15px;
+    cursor: pointer;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button1 {
+            padding: 15px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border: none;
+            background-color: #7aa2cd;
+            color: white;
+            border-radius: 5px;
+        }
+
+.ozon-button {
+    background-color: #9cb0ff;
+}
+
+.wb-button {
+    background-color: rgb(255, 181, 255);
+}
+
+.yandex-button {
+    background-color: #B25A2B;
+}
+
+.button-icon {
+    width: 20px;  /* Размер изображения */
+    height: 20px;
+    margin-right: 8px;  /* Расстояние между изображением и текстом */
+}
+
+.market-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px;
+}
+
+
+        #second-block{
+        background-color: rgb(140, 82, 255);
+        color: white;
+        margin: 4% 11%;
+        border-radius: 35px;
+        height: 43vh;
+    }
+    #left-block h2{
+        font-size: 45px;
+        margin-left: 6%;
+        position: relative;
+        top: 70px;
+        font-weight: 600;
+    }
+    #left-block p{
+        font-size: 20px;
+        margin-left: 6%;
+        position: relative;
+        top: 90px;
+    }
+
+    #second-block1{
+        background-color: rgb(140, 82, 255);
+        color: white;
+        margin: 4% 11%;
+        border-radius: 35px;
+        height: 23vh;
+    }
+    #left-block1 h2{
+        font-size: 45px;
+        margin-left: 6%;
+        position: relative;
+        top: 60px;
+        font-weight: 600;
+    }
+    #left-block1 p{
+        font-size: 20px;
+        margin-left: 6%;
+        position: relative;
+        top: 80px;
+    }
+
+
+    #right-block img{
+        width: 510px;
+        height: 473px;
+        position: relative;
+        left: 685px;
+        bottom: 334px;
+    }
+    #second-third #text{
+        color: white;
+        font-size: 30px;
+        margin-left: 11%;
+        margin-bottom: 5%;
+    }
+    #third{
+        display: flex;
+        color: white;
+        font-size: 20px;
+    }
+
+    #heads a:nth-of-type(1){
+        margin-left: 40%;
+    
+    }
+    #heads a:nth-of-type(2){
+        margin-left: 2%;
+    }
+    #heads a:nth-of-type(3){
+        margin-left: 2%;
+    }
+
+    #heads {
+        display: flex;
+        align-items: center; 
+        justify-content: flex-start; 
+        gap: 1%; 
+    }
+    #heads img{
+        margin-left: 8%;
+        width: 120px;
+        height: 120px
+    }
+
+    #heads a {
+        font-size: 18px;
+        color: white;
+        text-decoration: none; 
+        text-underline-offset: 4px; 
+        transition: text-decoration 0.3s, text-underline-offset 0.3s;
+    }
+    #heads a:hover {
+        text-decoration: underline; 
+        text-underline-offset: 10px; 
+    }
+
+    #send-form{
+        background-color: rgb(140, 82, 255);
+        margin: 0% 10%;
+        border-radius: 50px;
+        height: 275px;
+        text-align: center;
+        position: relative;
+        top: 100px;
+    }
+    #send-form form{
+        text-align: center;
+    }
+    #send-form h2{
+        color: white;
+        font-size: 30px;
+        position: relative;
+        top: 30px;
+    }
+    #send-form p{
+        color: white;
+        font-size: 15px;
+        position: relative;
+        top: 25px;
+    }
+    #email-form{
+        width: 40%;
+        height: 60px;
+        border-radius: 25px;
+        border: none;
+        margin-top: 4%;
+    }
+    #btn-to-text{
+        background-color: rgb(3, 3, 53);
+        color: white;
+        width: 10%;
+        height: 62px;
+        border-radius: 25px;
+        border: none;
+        font-size: 16px;
+        position: relative;
+        bottom: 62px;
+        left: 15.2%;
+    }
+    #btn-to-email{
+        background-color: rgb(3, 3, 53);
+        color: white;
+        width: 10%;
+        height: 62px;
+        border-radius: 25px;
+        border: none;
+        font-size: 16px;
+        position: relative;
+        bottom: 62px;
+        left: 60.3%;
+        display: none;
+    }
+    #text-form{
+        width: 40%;
+        height: 60px;
+        border-radius: 25px;
+        border: none;
+        margin-top: 4%;
+        margin-left: 29.9%;
+        display: none;
+        margin-top: 5.1%;
+    }
+    input::placeholder{
+        position: relative;
+        left: 25px;
+    }
+
+    footer{
+        display: flex;
+        align-items: flex-start;
+        width: auto;
+        height: 350px;
+        background-color: rgb(84, 84, 84);
+    }
+    #left-footer{
+        position: relative;
+        top: 200px;
+        display: flex;
+    }
+    #left-footer a{
+        text-decoration: none;
+        color: white;
+        font-size: 16px;
+        font-weight: 500;
+        margin: 0% 5%;
+        position: relative;
+        top: 31px;
+    }
+    #left-footer img{
+        width: 90px;
+        height: 90px;
+        padding-right: 20%;
+        margin-left: 30%;
+    }
+    #right-footer{
+        position: relative;
+        top: 212px;
+        width: 250px;
+        left: 47%;
+    }
+    #right-footer i{
+        font-size: 40px;
+        margin: 7%;
+    }
+
+
+
+
+    .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+        }
+        .modal-content {
+            background-color: #fff;
+            color: black;
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 50%;
+            text-align: center;
+        }
+        .car-list img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 10px;
+            cursor: pointer;
+        }
+   
+    </style>
+</head>
+<body>
+
+    <div id="heads">
+        <img src="img/importo..png" alt="">
+        <a href="index.html">На главную</a>
+        <a href="">Помощь</a>
+        <a href="osmotr.html">Купить\Продать</a>
+    </div>
+
+    <div id="second-block">
+        <div id="left-block">
+            <h2>Получай аналитику о всех автомобилях</h2>
+            <p>
+                Сервис помогает лучше следить за качеством авто,<br>
+                Помогает сравнивать понравившиеся модели.<br>
+            </p>
+    </div>
+    </div>
+
+
+    <div class="finance-container">
+        <div class="finance-box"  id="first-car"  onclick="openModal('first')">
+            <h3 id="first-car">Первое авто <i class="fa-solid fa-plus" style="font-size: 30px; margin-left: 440px;"></i></h3>
+        </div>
+        <div class="finance-box" onclick="openModal('second')">
+            <h3  id="second-car">Второе авто <i class="fa-solid fa-plus" style="font-size: 30px; margin-left: 440px;"></i></h3>
+
+           
+        </div>
+    </div>
+
+
+
+    <h3>Характеристики первого авто</h3>
+    
+    <div class="analytics-container">
+        <div class="analytics-box">
+            <h3>Заголовок :</h3>
+            <p>текст</p>
+        </div>
+        <div class="analytics-box">
+            <h3>Заголовок :</h3>
+            <p>текст</p>
+        </div>
+        <div class="analytics-box">
+            <h3>Заголовок :</h3>
+            <p>текст</p>
+        </div>
+        <div class="analytics-box">
+            <h3>Заголовок :</h3>
+            <p>текст</p>
+        </div>
+    </div>
+    
+    <h3>Характеристики второго авто</h3>
+
+    <div class="analytics-container">
+        <div class="analytics-box">
+            <h3>Заголовок :</h3>
+            <p>текст</p>
+        </div>
+        <div class="analytics-box">
+            <h3>Заголовок :</h3>
+            <p>текст</p>
+        </div>
+        <div class="analytics-box">
+            <h3>Заголовок :</h3>
+            <p>текст</p>
+        </div>
+        <div class="analytics-box">
+            <h3>Заголовок :</h3>
+            <p>текст</p>
+        </div>
+    </div>
+    
+
+   
+
+    
+    
+
+    <div id="send-form">
+        <h2>Support</h2>
+        <p>Опишите ваши дополнительные вопросы по авто и наш менеджер ответи вам.</p>
+<form action="https://api.web3forms.com/submit" method="POST">
+    <input type="hidden" name="access_key" value="8df60a2c-f55f-4fb8-ad1c-adae170ab5c0">
+    <input type="email" name="email" required placeholder="Введите вашу почту" id="email-form">
+    <input type="text" name="text" required id="text-form" placeholder="Опишите вашу проблему">
+    <button type="submit" id="btn-to-email">Submit</button>
+</form>
+<button type="submit" id="btn-to-text">Submit</button>
+    </div> 
+    <footer>
+    <div id="left-footer">
+        <img src="img/111.png" alt="">
+        <a href="index.html">Главная</a>
+        <a href="">База знаний</a>
+        <a href="">Купить\Продать</a>
+        <a href="osmotr.html">Запись</a>
+    </div>
+    <div id="right-footer">
+        <a href=""><i class="fa-brands fa-telegram" style="color: #ffffff;"></i></a>
+        <a href=""><i class="fa-brands fa-github" style="color: #ffffff;"></i></a>
+        <a href=""><i class="fa-brands fa-instagram" style="color: #ffffff;"></i></a>
+    </div>
+
+
+    <div id="carModal" class="modal">
+        <div class="modal-content">
+            <h2>Выберите автомобиль</h2>
+            <div class="car-list">
+               
+                <img src="mercedes.png" alt="Mercedes" onclick="selectCar('first', 'Mercedes', '250 л.с.', '4.2 сек', '10 км/л')" style="width: 7%; height: 7%; margin-bottom: 20px;">
+                <img src="audi.png" alt="Audi" onclick="selectCar('first', 'Audi', '230 л.с.', '4.8 сек', '11 км/л')" style="width: 10%;">
+                <img src="tayota.jpg" alt="Toyota" onclick="selectCar('first', 'Toyota', '180 л.с.', '5.2 сек', '14 км/л')" style="margin-left: 10px;">
+                <img src="bmw.png" alt="BMW" onclick="selectCar('first', 'BMW', '200 л.с.', '4.5 сек', '12 км/л')" style="width: 20%;">
+                
+            </div>
+            <button onclick="closeModal()">Закрыть</button>
+        </div>
+    </div>
+
+
+
+    </footer>
+
+    <script>
+        let selectedBlock = '';
+
+        function openModal(block) {
+            selectedBlock = block;
+            document.getElementById("carModal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("carModal").style.display = "none";
+        }
+
+        function selectCar(block, name, power, acceleration, consumption) {
+            document.getElementById(`${block}-car`).innerHTML = name;
+            document.getElementById(`${block}-car-specs`).innerHTML = `
+                <div class='analytics-box'><h3>Мощность:</h3><p>${power}</p></div>
+                <div class='analytics-box'><h3>Разгон:</h3><p>${acceleration}</p></div>
+                <div class='analytics-box'><h3>Расход:</h3><p>${consumption}</p></div>`;
+            closeModal();
+        }
+    </script>
+</body>
+</html>
